@@ -1,6 +1,9 @@
 // Leetcode: https://leetcode.com/problems/reverse-linked-list/
 // Solution Video: https://youtu.be/W1BLGgWZhK8
 
+// Time Complexity: O(n)
+// Alternative Solution Time Complexity: O(n ** 2)
+
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
