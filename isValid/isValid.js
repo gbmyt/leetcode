@@ -33,40 +33,69 @@
             // if so, finish the 'pair' and continue to loop (i + 2 to skip the closing bracket if close bracket was found, otherwise i + 1)
 
         // otherwise, recursively call isValid() on the remainder of the string
-var isValid = function(s, pair = '', substring = false) {
 
-  let validated = false;
-  let validPairs = ['()', '[]', '{}'];
+        
+// =============================================
+//           	Neetcode Solution
+// =============================================
+var isValid = function(s) {
+  
+  let stack = [];
+  const pairs = { ')': '(', '}': '{', ']': '['};
+  
+  if (s.length === 0 || s.length % 2 !== 0) return false;
 
-  if (s.length === 0 || (s.length % 2 !== 0 && !substring)) return false;
-  if (s.length === 2 && validPairs.includes(s)) return true;
-
-  for (var i = 0; i < s.length;) {
-
-      if (i >= s.length) { // exceeded end of string somehow 
-          return validated;
-      } else if (i === s.length - 2) { // at end of string
-          validated = validPairs.includes(s[i] + s[i + 1]) ? true : false;
-          break;
-      } else if (validPairs.includes(s[i] + s[i + 1])) { // found pair 
-          i = i + 2;
-      } 
-      
-      if (pair.length === 1) { // reached the end of a nested string
-        if (i === s.length - 1) {
-          return validPairs.includes(pair + s[i]) ? true : false;
-        } else {
-          i++;
-        }
-      } else { // validate nested parens ([])
-        validated = isValid(s.slice(i + 1), s[i], true);
-        // i = i + 1;
-        break;
+  for (char of s) {
+      if (pairs.hasOwnProperty(char)) {
+          if (stack.length && stack[stack.length - 1] === pairs[char]) {
+              stack.pop();
+          } else {
+              return false;
+          }
+      } else {
+          stack.push(char);
       }
   }
-
-  return validated;
+  return !stack.length ? true : false;
 };
+        
+// =============================================
+//           	My Solution (BROKEN)
+// =============================================
+
+// var isValid = function(s, pair = '', substring = false) {
+
+//   let validated = false;
+//   let validPairs = ['()', '[]', '{}'];
+
+//   if (s.length === 0 || (s.length % 2 !== 0 && !substring)) return false;
+//   if (s.length === 2 && validPairs.includes(s)) return true;
+
+//   for (var i = 0; i < s.length;) {
+
+//       if (i >= s.length) { // exceeded end of string somehow 
+//           return validated;
+//       } else if (i === s.length - 2) { // at end of string
+//           validated = validPairs.includes(s[i] + s[i + 1]) ? true : false;
+//           break;
+//       } else if (validPairs.includes(s[i] + s[i + 1])) { // found pair 
+//           i = i + 2;
+//       } 
+      
+//       if (pair.length === 1) { // reached the end of a nested string
+//         if (i === s.length - 1) {
+//           return validPairs.includes(pair + s[i]) ? true : false;
+//         } else {
+//           i++;
+//         }
+//       } else { // validate nested parens ([])
+//         validated = isValid(s.slice(i + 1), s[i], true);
+//         break;
+//       }
+//   }
+
+//   return validated;
+// };
 // Export Logic 
 if (!module) {
   module = {};
