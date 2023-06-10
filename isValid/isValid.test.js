@@ -39,8 +39,8 @@ describe.only('Functionality', function() {
     s = '((';
     expect(isValid(s)).toBe(false);
     
-    // s = '[[[]';
-    // expect(isValid(s)).toBe(false);
+    s = '[[[]';
+    expect(isValid(s)).toBe(false);
   });
 
   it('should validate nested parens', function() {
