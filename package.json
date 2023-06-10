@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-iv": "jest ./isValid/isValid.test.js --watch",
     "test-ts": "jest ./twoSum/twoSum.test.js --watch",
     "test-anagram": "jest ./validAnagram/validAnagram.test.js --watch",
     "test-rll": "jest ./reverseLinkedList/reverseLinkedList.test.js --watch",

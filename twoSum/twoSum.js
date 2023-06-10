@@ -52,7 +52,7 @@
       return []
   };
 
-  // Export Logic 
+// Export Logic 
 if (!module) {
   module = {};
 }
