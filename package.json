@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-fd": "jest ./findDuplicate/findDuplicate.test.js --watch",
+    "test-ga": "jest ./groupAnagrams/groupAnagrams.test.js --watch",
     "test-iv": "jest ./isValid/isValid.test.js --watch",
     "test-ts": "jest ./twoSum/twoSum.test.js --watch",
     "test-anagram": "jest ./validAnagram/validAnagram.test.js --watch",
