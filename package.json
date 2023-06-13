@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-vp": "jest ./validPalindrome/validPalindrome.test.js --watch",
     "test-topK": "jest ./topKFrequentElements/topKFrequentElements.test.js --watch",
     "test-fd": "jest ./findDuplicate/findDuplicate.test.js --watch",
     "test-ga": "jest ./groupAnagrams/groupAnagrams.test.js --watch",
