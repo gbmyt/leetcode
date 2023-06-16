@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-mn": "jest ./missingNumber/missingNumber.test.js --watch",
+    "test-maxp": "jest ./maxProfit/maxProfit.test.js --watch",
     "test-vp": "jest ./validPalindrome/validPalindrome.test.js --watch",
     "test-topK": "jest ./topKFrequentElements/topKFrequentElements.test.js --watch",
     "test-fd": "jest ./findDuplicate/findDuplicate.test.js --watch",
