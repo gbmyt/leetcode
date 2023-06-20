@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-lcs": "jest ./longestConsecutiveSequence/longestConsecutiveSequence.test.js --watch",
+    "test-st": "jest ./isSameTree/isSameTree.test.js --watch",
     "test-mn": "jest ./missingNumber/missingNumber.test.js --watch",
     "test-maxp": "jest ./maxProfit/maxProfit.test.js --watch",
     "test-vp": "jest ./validPalindrome/validPalindrome.test.js --watch",

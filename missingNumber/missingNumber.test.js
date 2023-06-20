@@ -1,6 +1,6 @@
 const missingNumber = require ('./missingNumber.js');
 
-describe('maxProfit Import', function() {
+describe('missingNumber Import', function() {
   it('should exist', function() {
 		expect(missingNumber).not.toBe(undefined);
   });

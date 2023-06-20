@@ -10,6 +10,10 @@
 // About the bitwise XOR operator and how it works
 // About the difference in performance between loops and higher order functions
 
+// Learn more: 
+// Bitwise XOR: https://bit.ly/3pa9Jtg
+// HOFs vs Loops Peformance: https://bit.ly/3NfOIp5
+
 /**
  * @param {number[]} nums
  * @return {number}
