@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-cs": "jest ./climbStairs/climbStairs.test.js --watch",
     "test-lcs": "jest ./longestConsecutiveSequence/longestConsecutiveSequence.test.js --watch",
     "test-st": "jest ./isSameTree/isSameTree.test.js --watch",
     "test-mn": "jest ./missingNumber/missingNumber.test.js --watch",
