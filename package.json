@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-subStringLen": "jest ./lengthOfLongestSubstring/lengthOfLongestSubstring.test.js --watch",
+    "test-rol": "jest ./reorderList/reorderList.test.js --watch",
+    "test-mtl": "jest ./mergeTwoLists/mergeTwoLists.test.js --watch",
+    "test-maxA": "jest ./maxArea/maxArea.test.js --watch",
     "test-threeSum": "jest ./threeSum/threeSum.test.js --watch",
     "test-cs": "jest ./climbStairs/climbStairs.test.js --watch",
     "test-lcs": "jest ./longestConsecutiveSequence/longestConsecutiveSequence.test.js --watch",
