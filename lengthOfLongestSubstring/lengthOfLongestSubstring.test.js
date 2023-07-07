@@ -23,14 +23,9 @@ describe('lengthOfLongestSubstring', function() {
     expect(lengthOfLongestSubstring(string)).toBe(3);
   });
 
-  it('should not consider spaces valid characters', function() {
-    let string = 'ab cabc d';
-    expect(lengthOfLongestSubstring(string)).toBe(3);
-  });
-
-  it('should allow digits and symbols', function() {
+  it('should allow spaces, digits, and symbols', function() {
     let string = 'abc1 def';
-    expect(lengthOfLongestSubstring(string)).toBe(4);
+    expect(lengthOfLongestSubstring(string)).toBe(8);
   });
 
 });
