@@ -23,6 +23,8 @@
 // =============================================
 // Chars can be upper and lowercase. Should the solution behave in case-sensitive manner?
 
+// Time Complexity O(n)
+
 var minWindow = function(s, t) {
   // Set up a way to store the minSubStr 
   let minSubstring = ''; 
