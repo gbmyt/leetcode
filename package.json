@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-minWin": "jest ./minWindow/minWindow.test.js --watch",
     "test-subStringLen": "jest ./lengthOfLongestSubstring/lengthOfLongestSubstring.test.js --watch",
     "test-rol": "jest ./reorderList/reorderList.test.js --watch",
     "test-mtl": "jest ./mergeTwoLists/mergeTwoLists.test.js --watch",
