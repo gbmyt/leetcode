@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-isSubtree": "jest ./isSubtree/isSubtree.test.js --watch",
     "test-minWin": "jest ./minWindow/minWindow.test.js --watch",
     "test-subStringLen": "jest ./lengthOfLongestSubstring/lengthOfLongestSubstring.test.js --watch",
     "test-rol": "jest ./reorderList/reorderList.test.js --watch",

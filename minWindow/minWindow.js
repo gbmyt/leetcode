@@ -38,6 +38,7 @@ var minWindow = function (s, t) {
     return getSubString(s, start, end);
 };
 
+// Set up 't' character frequency map (needed char counts => { A: 1, B: 1, C: 1})
 const getFrequencyMap = (str, frequencyMap = new Map()) => {
     for (const char of str) {
         frequencyMap.set(char, (frequencyMap.get(char) || 0) + 1);
@@ -97,6 +98,7 @@ const subtractLeftFrequency = (s, left, frequencyMap, matched) => {
     return matched;
 };
 
+// Uses indices to generate substring or ''
 const getSubString = (s, start, end) =>
     end <= s.length ? s.slice(start, start + end) : '';
 
