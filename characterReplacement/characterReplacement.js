@@ -4,7 +4,7 @@
  * @return {number}
  */
 // =============================================
-//           					OICE
+//           	     OICE
 // =============================================
 // O: Length of the longest substring containing the same letter you can get after performing specified operations
 // I: string s and an integer k
@@ -41,6 +41,31 @@
 // Don't actually need to perform the swap, just isolate the longest substring and return its length
 
 // =============================================
+//              Neetcode Solution
+// =============================================
+// Time Complexity: O(((N + 26) * N) * (M - N)) 
+// Space Complexity: O(1)
+var characterReplacement = function(s, k) {
+    let res = 0;
+    let count = new Map();
+    let l = 0;
+
+    for (let r = 0; r < s.length; r++) {
+        let len  = r - l + 1
+        count.set(s[r], 1 + (count.get(s[r]) || 0))
+
+        if ((len - Math.max(...count.values())) > k) {
+            count.set(s[l], count.get(s[l]) - 1)
+            l++;
+        }
+        len = r - l + 1;
+        res = Math.max(res, len)
+    }
+
+    return res;
+};
+
+// =============================================
 //             My Solution (Broken)
 // =============================================
 
@@ -66,10 +91,10 @@
         // reset diff letter count to 0
     // else if next letter not target
         // continue loop until target letter found, set pointer to that index
-var characterReplacement = function(s, k) {
-  if (k === 0) return 0;
-  // todo
-};
+// var characterReplacement = function(s, k) {
+//   if (k === 0) return 0;
+//   // todo
+// };
 
 if (!module) {
   let module = {};
