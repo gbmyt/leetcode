@@ -64,11 +64,9 @@ var reorderList = function(head) {
 
   // Reverse the second half of the list
   let second = slow.next; // first elem of right half
-  let prev = null;
-  slow.next = null;
-  let tmp;
+  let prev = slow.next = null;
   while (second) {
-    tmp = second.next;
+    let tmp = second.next;
     second.next = prev;
     prev = second;
     second = tmp;
