@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-rmvNth": "jest ./removeNthFromEnd/removeNthFromEnd.test.js --watch",
     "test-charRplc": "jest ./characterReplacement/characterReplacement.test.js --watch",
     "test-findMin": "jest ./findMin/findMin.test.js --watch",
     "test-isSubtree": "jest ./isSubtree/isSubtree.test.js --watch",
