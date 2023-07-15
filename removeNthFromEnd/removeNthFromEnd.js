@@ -29,6 +29,18 @@ function ListNode(val, next) {
     // Single node list
         // where n = 1, return an empty node? or a new ListNode with no value?
         // where n != 1, return head of unmodified list
+// =============================================
+//             NeetCode Solution
+// =============================================
+// Time Complexity: O(n)
+// var removeNthFromEnd = function(head, n) {
+  
+// };
+
+// =============================================
+//                My Solution
+// =============================================
+// Time Complexity: O(n*2)
 var removeNthFromEnd = function(head, n) {
     // Return empty ListNode if wrong input type
     if (typeof head !== 'object') return null;

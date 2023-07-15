@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-cg": "jest ./cloneGraph/cloneGraph.test.js --watch",
     "test-rmvNth": "jest ./removeNthFromEnd/removeNthFromEnd.test.js --watch",
     "test-charRplc": "jest ./characterReplacement/characterReplacement.test.js --watch",
     "test-findMin": "jest ./findMin/findMin.test.js --watch",
