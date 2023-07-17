@@ -27,6 +27,81 @@
 
 
 // =============================================
+//             NeetCode Solution
+// =============================================
+// Time Complexity: O(m*n)
+
+var pacificAtlantic = function(heights) {
+  const [ pacificReachable, atlanticReachable ] = search(heights);   /* Time O(ROWS * COLS) | Space O(ROWS * COLS) */
+
+  return searchGrid(heights, pacificReachable, atlanticReachable);/* Time O(ROWS * COLS) | Space O(ROWS * COLS) */
+};
+
+var search = (heights) => {
+  const [ rows, cols ] = [ heights.length, heights[0].length ];
+  const [ pacificReachable, atlanticReachable ] = [ getMatrix(rows, cols), getMatrix(rows, cols) ];/* Time O(ROWS * COLS) | Space O(ROWS * COLS) */
+
+  searchRows(heights, rows, cols, pacificReachable, atlanticReachable);
+  searchCols(heights, rows, cols, pacificReachable, atlanticReachable);
+
+  return [ pacificReachable, atlanticReachable ];
+}
+
+var getMatrix = (rows, cols) => new Array(rows).fill()/* Time O(ROWS * COLS) | Space O(ROWS * COLS) */
+  .map(() => new Array(cols).fill(false));
+
+var searchRows = (heights, rows, cols, pacificReachable, atlanticReachable) => {
+ for (let row = 0; row < rows; row++) {/* Time O(ROWS) */
+      const [ pacificStart, atlanticStart ] = [ 0, (cols - 1) ];
+
+      dfs(row, pacificStart, rows, cols, pacificReachable, heights);   /* Space O(ROWS * COLS) */
+      dfs(row, atlanticStart, rows, cols, atlanticReachable, heights); /* Space O(ROWS * COLS) */
+  }
+}
+
+var searchCols = (heights, rows, cols, pacificReachable, atlanticReachable) => {
+  for (let col = 0; col < cols; col++) {/* Time O(COLS) */
+      const [ pacificStart, atlanticStart ] = [ 0, (rows - 1) ];
+
+      dfs(pacificStart, col, rows, cols, pacificReachable, heights);   /* Space O(ROWS * COLS) */
+      dfs(atlanticStart, col, rows, cols, atlanticReachable, heights); /* Space O(ROWS * COLS) */
+  }
+}
+
+const dfs = (row, col, rows, cols, isReachable, heights) => {
+  isReachable[row][col] = true;
+
+  for (const [ _row, _col ] of getNeighbors(row, rows, col, cols)) {
+      if (isReachable[_row][_col]) continue;
+
+      const isLower = heights[_row][_col] < heights[row][col];
+      if (isLower) continue;
+
+
+      dfs(_row, _col, rows, cols, isReachable, heights);              /* Space O(ROWS * COLS) */
+  }
+}
+
+var searchGrid = (heights, pacificReachable, atlanticReachable, intersection = []) => {
+  const [ rows, cols ] = [ heights.length, heights[0].length ];
+
+  for (let row = 0; row < rows; row++) {/* Time O(ROWS) */
+      for (let col = 0; col < cols; col++) {/* Time O(COLS) */
+          const isReachable = pacificReachable[row][col] && atlanticReachable[row][col]
+          if (!isReachable) continue
+
+          intersection.push([ row, col ]);                             /* Space O(ROWS * COLS) */
+      }
+  }
+
+  return intersection;
+}
+
+var getNeighbors = (row, rows, col, cols) => [ [ 0, 1 ], [ 0, -1 ], [ 1, 0 ], [ -1, 0 ] ]
+  .map(([ _row, _col ]) => [ (row + _row), (col + _col)])
+  .filter(([ _row, _col ]) => (0 <= _row) && (_row < rows) && (0 <= _col) && (_col < cols))
+
+// =============================================
 //             My Solution (broken)
 // =============================================
 // =============================================
@@ -65,58 +140,58 @@
 // Else if path not valid
     // Get next starting cell coord and try again
 // return results list
-var pacificAtlantic = function(heights) {
-  let results = [];
+// var pacificAtlantic = function(heights) {
+//   let results = [];
 
-  // cols
-  for (var colIndex = 0; colIndex <= heights.length; colIndex++) {
+//   // cols
+//   for (var colIndex = 0; colIndex <= heights.length; colIndex++) {
       
-      // rows
-      for (var rowIndex = 0; rowIndex <= heights[colIndex].length; rowIndex++) {
+//       // rows
+//       for (var rowIndex = 0; rowIndex <= heights[colIndex].length; rowIndex++) {
           
-      }
+//       }
 
-  }
+//   }
 
-  const validateCell = (row, col, board) => {
-      const cell = board[row][col];
-      const up = board[row - 1][col];
-      const down = board[row + 1][col];
-      const left = board[row][col - 1];
-      const right = board[row][col + 1];
+//   const validateCell = (row, col, board) => {
+//       const cell = board[row][col];
+//       const up = board[row - 1][col];
+//       const down = board[row + 1][col];
+//       const left = board[row][col - 1];
+//       const right = board[row][col + 1];
 
-      // path valid
-      if (!right || !down) { 
-          console.log('found atlantic');
-          return { 'isValid': true, 'direction': null };
-      } else if (!left || !up) { // left = (r, c - 1)
-          console.log('found pacific');
-          return { 'isValid': true, 'direction': null };
-      }
+//       // path valid
+//       if (!right || !down) { 
+//           console.log('found atlantic');
+//           return { 'isValid': true, 'direction': null };
+//       } else if (!left || !up) { // left = (r, c - 1)
+//           console.log('found pacific');
+//           return { 'isValid': true, 'direction': null };
+//       }
 
-      // compare cell heights 
-      if (cell <= right) { // right = (r, c + 1)
-          console.log('checking right');
-          return { 'isValid': true, 'direction': right };
-      } else if (cell <= left) { // left = (r, c - 1)
-          console.log('checking left');
-          return { 'isValid': true, 'direction': left };
-      } else if (cell <= up) { // up = (r - 1, c)
-          console.log('checking up');
-          return { 'isValid': true, 'direction': up };
-      } else if (cell <= down) { // down = (r + 1, c)
-          console.log('checking down');
-          return { 'isValid': true, 'direction': down };
-      } else {
-          console.log('Invalid cell coordinates. Please try again');
-      }
+//       // compare cell heights 
+//       if (cell <= right) { // right = (r, c + 1)
+//           console.log('checking right');
+//           return { 'isValid': true, 'direction': right };
+//       } else if (cell <= left) { // left = (r, c - 1)
+//           console.log('checking left');
+//           return { 'isValid': true, 'direction': left };
+//       } else if (cell <= up) { // up = (r - 1, c)
+//           console.log('checking up');
+//           return { 'isValid': true, 'direction': up };
+//       } else if (cell <= down) { // down = (r + 1, c)
+//           console.log('checking down');
+//           return { 'isValid': true, 'direction': down };
+//       } else {
+//           console.log('Invalid cell coordinates. Please try again');
+//       }
 
-      return { 'isValid': false, 'direction': null };
-  };
+//       return { 'isValid': false, 'direction': null };
+//   };
   
-  validateCell(0, 0, heights);
-  return results;
-};
+//   validateCell(0, 0, heights);
+//   return results;
+// };
 
 if (!module) {
   let module = {};
