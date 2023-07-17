@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-pa": "jest ./pacificAtlantic/pacificAtlantic.test.js --watch",
     "test-cg": "jest ./cloneGraph/cloneGraph.test.js --watch",
     "test-rmvNth": "jest ./removeNthFromEnd/removeNthFromEnd.test.js --watch",
     "test-charRplc": "jest ./characterReplacement/characterReplacement.test.js --watch",
