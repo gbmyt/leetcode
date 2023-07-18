@@ -1,3 +1,8 @@
+const {
+  PriorityQueue,
+  MinPriorityQueue,
+  MaxPriorityQueue,
+} = require('@datastructures-js/priority-queue');
 // =============================================
 //           	     OICE
 // =============================================
@@ -24,6 +29,58 @@
     // storage is empty [] 
 
 // =============================================
+//            NeetCode Solution
+// =============================================
+class MedianFinder {
+  constructor () {
+      this.maxHeap = new MaxPriorityQueue()
+      this.minHeap = new MinPriorityQueue()
+  }
+
+  /* Time O(log(N)) | Space (N) */
+  insertNum (num) {
+      this.addNum(num)
+  }
+
+  addNum (num, heap = this.getHeap(num)) {
+      heap.enqueue(num)
+      this.rebalance()
+  }
+
+  getHeap (num, { maxHeap, minHeap } = this) {
+      const isFirst = maxHeap.isEmpty()
+      const isGreater = num <= this.top(maxHeap);
+      const isMaxHeap = (isFirst || isGreater);
+      return (isMaxHeap)
+          ? maxHeap
+          : minHeap
+  }
+
+  rebalance ({ maxHeap, minHeap } = this) {
+      const canShiftMax = (minHeap.size() + 1) < maxHeap.size()
+      if (canShiftMax) return minHeap.enqueue(maxHeap.dequeue().element)
+
+      const canShiftMin = maxHeap.size() < minHeap.size()
+      if (canShiftMin) return maxHeap.enqueue(minHeap.dequeue().element)
+  }
+
+  /* Time O(1) | Space (1) */
+  findMedian ({ maxHeap, minHeap } = this) {
+      const isEven = maxHeap.size() === minHeap.size()
+      return (isEven)
+          ? this.average(maxHeap, minHeap)
+          : this.top(maxHeap)
+  }
+
+  average (maxHeap, minHeap) {
+      return (this.top(maxHeap) + this.top(minHeap)) / 2
+  }
+
+  top (heap) {
+      return heap.front()?.element || 0
+  }
+}
+// =============================================
 //               My Solution (broken)
 // =============================================
 // =============================================
@@ -42,63 +99,63 @@
     // Else if size is an odd number
         // median = storage[Math.ceil(storage.length / 2)]
 
-  var MedianFinder = function() {
-    this.storage = [];
-    this.size = 0;
-};
+//   var MedianFinder = function() {
+//     this.storage = [];
+//     this.size = 0;
+// };
 
-/** 
-  * @param {number} num
-  * @return {void}
-  */
-MedianFinder.prototype.addNum = function(num) {
+// /** 
+//   * @param {number} num
+//   * @return {void}
+//   */
+// MedianFinder.prototype.addNum = function(num) {
 
-    if (typeof num !== 'number') {
-        return null;
-    } else {
-        if (this.size > 0) {
-            for (var i = 0; i < this.size; i++) {
-                if (i === this.size - 1 && num > this.storage[this.size - 1]) {
-                    this.storage.push(num);
-                } else if (num <= this.storage[i + 1] && (i + 1 < this.size)) {
-                    this.storage.splice(i, 0, num);
-                } 
-            }
+//     if (typeof num !== 'number') {
+//         return null;
+//     } else {
+//         if (this.size > 0) {
+//             for (var i = 0; i < this.size; i++) {
+//                 if (i === this.size - 1 && num > this.storage[this.size - 1]) {
+//                     this.storage.push(num);
+//                 } else if (num <= this.storage[i + 1] && (i + 1 < this.size)) {
+//                     this.storage.splice(i, 0, num);
+//                 } 
+//             }
 
-        } else if (this.size === 0) {
-            this.storage.push(num);
-        }
-        this.size += 1;
-    }
+//         } else if (this.size === 0) {
+//             this.storage.push(num);
+//         }
+//         this.size += 1;
+//     }
 
-};
+// };
 
-/**
-  * @return {number}
-  */
-MedianFinder.prototype.findMedian = function() {
-    // console.log('median storage log', this.storage);
+// /**
+//   * @return {number}
+//   */
+// MedianFinder.prototype.findMedian = function() {
+//     // console.log('median storage log', this.storage);
 
-    if (this.size < 1) {
-        return null;
-    }
+//     if (this.size < 1) {
+//         return null;
+//     }
 
-    let median;
-    if (this.size === 1) {
-        median = this.storage[0];
-    } else {
-        // Else if size is an even number
-        if (this.size % 2 === 0) {
-            median = (this.storage[(this.size / 2) - 1] + this.storage[(this.size) / 2]) / 2
-        } else if (this.size % 2 !== 0) {
-            // Else if size is an odd number
-            median = this.storage[Math.floor(this.size / 2)]
-        } else {
-            console.log('there was a problem getting median');
-        }
-    }
-    return median;
-};
+//     let median;
+//     if (this.size === 1) {
+//         median = this.storage[0];
+//     } else {
+//         // Else if size is an even number
+//         if (this.size % 2 === 0) {
+//             median = (this.storage[(this.size / 2) - 1] + this.storage[(this.size) / 2]) / 2
+//         } else if (this.size % 2 !== 0) {
+//             // Else if size is an odd number
+//             median = this.storage[Math.floor(this.size / 2)]
+//         } else {
+//             console.log('there was a problem getting median');
+//         }
+//     }
+//     return median;
+// };
 
 /** 
   * Your MedianFinder object will be instantiated and called as such:

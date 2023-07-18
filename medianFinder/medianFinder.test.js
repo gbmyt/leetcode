@@ -1,4 +1,4 @@
-const MedianFinder= require('./medianFinder.js');
+const MedianFinder = require('./medianFinder.js');
 
 describe('MedianFinder Import', function() {
   it('should exist', function() {
@@ -17,7 +17,7 @@ describe('MedianFinder Import', function() {
 
 describe('MedianFinder', function() {
 
-  it('should return a list of cell coordinates from which a valid path can be taken to BOTH oceans', function() {
+  it('should return the median of all ints in storage', function() {
     let obj = new MedianFinder();
     obj.addNum(1);
     obj.addNum(2);
